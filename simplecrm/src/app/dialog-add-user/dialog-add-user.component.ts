@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../../models/user.class';
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';;
 
 @Component({
   selector: 'app-dialog-add-user',
