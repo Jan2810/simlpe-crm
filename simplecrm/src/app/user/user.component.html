@@ -1,16 +1,18 @@
 <div class="content">
     <mat-card appearance="outlined">
         <table class="user-table">
-            <tr>
-                <th>Name</th>
-                <th>E-Mail</th>
-                <th>City</th>
-            </tr>
-            <tr>
-                <td>Donald Trump</td>
-                <td>donald&#64;mossad.com</td>
-                <td>Jerusalem</td>
-            </tr>
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <th>E-Mail</th>
+                    <th>City</th>
+                </tr>
+                <tr *ngFor ="let user of users$ | async">
+                    <td>{{ user.firstName }} {{ user.lastName }}</td>
+                    <td>{{ user.street }}</td>
+                    <td>{{ user.city }}</td>
+                </tr>
+            </tbody>
         </table>
     </mat-card>
 </div>
