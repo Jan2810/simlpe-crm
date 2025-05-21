@@ -6,6 +6,7 @@ mat-toolbar,
 mat-toolbar-row {
     min-height: 56px;
     height: 56px;
+    background-color: #ffffff;
 }
 
 .mat-sidenav {
@@ -37,15 +38,24 @@ mat-toolbar-row {
 .menu-btn {
     cursor: pointer;
     margin-right: 16px;
+    background-color: #6aabd1;
+    color: whitesmoke;
+    border: none;
 }
 
 .logo-container {
     border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 16px;
     min-height: 56px;
     display: flex;
     align-items: center;
+    img {
+        height: 100%;
+    }
+    span {
+        font-size: 32px;
+        color: #4d77a1;
+    }
 }
 
 .router-container {

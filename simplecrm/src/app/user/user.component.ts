@@ -5,6 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 import { DialogAddUserComponent } from './../dialog-add-user/dialog-add-user.component';
 
 @Component({
@@ -17,6 +18,7 @@ import { DialogAddUserComponent } from './../dialog-add-user/dialog-add-user.com
     MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCardModule,
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'

@@ -2,6 +2,57 @@
     position: absolute;
     bottom: 56px;
     right: 56px;
-    background-color:rgb(97, 176, 187);
+    background-color: rgb(97, 176, 187);
     color: whitesmoke;
+}
+
+.content {
+    mat-card {
+        margin-bottom: 16px;
+    }
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+        border-bottom: 1px solid #e0e0e0;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        cursor: pointer;
+
+        &:first-child {
+            cursor: unset;
+            &:hover {
+                background-color: unset;
+            }
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+
+        th {
+            color: rgba(0, 0, 0, 0.4);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px;
+            text-align: start;
+            &:first-child {
+                padding-left: 16px;
+            }
+        }
+
+        td {
+            padding: 8px;
+            height: 48px;
+            &:first-child {
+                padding-left: 16px;
+            }
+        }
+    }
 }
