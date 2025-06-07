@@ -11,6 +11,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Firestore, collectionData, collection, doc, onSnapshot } from '@angular/fire/firestore';
 import { Observable, Subscription } from 'rxjs';
 import { User } from '../../models/user.class';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -23,11 +24,13 @@ import { User } from '../../models/user.class';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
+
 export class UserComponent implements OnInit {
   firestore = inject(Firestore);
   readonly dialog = inject(MatDialog);
@@ -40,6 +43,10 @@ export class UserComponent implements OnInit {
     this.sub = this.users$.subscribe(users => {
       console.log('Users-Observable hat neue Daten:', users);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   openDialog(): void {
