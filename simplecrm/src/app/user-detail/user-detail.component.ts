@@ -1,21 +1,28 @@
 import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
-import { Firestore, doc, collection, getDoc } from '@angular/fire/firestore';
+import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { User } from '../../models/user.class';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [
+    MatCardModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    DialogEditUserComponent,
+  ],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
 
-
-
 export class UserDetailComponent {
-
+  readonly dialog = inject(MatDialog);
   userId: string = '';
   user: User = new User();
   firestore = inject(Firestore);
@@ -42,4 +49,13 @@ export class UserDetailComponent {
       console.error('Fehler beim Abrufen des Users:', error);
     });
   }
+
+  openEditDialog(): void {
+    const dialogRef = this.dialog.open(DialogEditUserComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
 }
