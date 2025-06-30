@@ -6,17 +6,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { User } from '../../models/user.class';
 import { MatDialog } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
   imports: [
-    MatCardModule, 
-    MatIconModule, 
-    MatButtonModule, 
-    DialogEditUserComponent,
-  ],
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule
+],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
@@ -50,9 +51,8 @@ export class UserDetailComponent {
     });
   }
 
-  openEditDialog(): void {
+  editUserDetail(): void {
     const dialogRef = this.dialog.open(DialogEditUserComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

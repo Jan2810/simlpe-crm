@@ -33,9 +33,10 @@
     p {
         margin: 0;
     }
-    mat-card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+}
+
+.up-right-corner {
+    position: absolute;
+    right: 16px;
+    top: 16px;
 }
