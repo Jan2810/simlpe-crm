@@ -28,7 +28,7 @@ export class User {
             street: this.street,
             zipCode: this.zipCode,
             city: this.city,
-            idField: this.id
+            id: this.id
         };
     }
 }

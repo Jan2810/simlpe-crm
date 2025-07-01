@@ -17,7 +17,7 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
     MatIconModule,
     MatButtonModule,
     MatMenuModule
-],
+  ],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
@@ -52,9 +52,13 @@ export class UserDetailComponent {
   }
 
   editUserDetail(): void {
-    const dialogRef = this.dialog.open(DialogEditUserComponent);
+    const dialogRef = this.dialog.open(DialogEditUserComponent, {
+      data: this.user
+    });
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log('Updated user:', result);
     });
   }
 
