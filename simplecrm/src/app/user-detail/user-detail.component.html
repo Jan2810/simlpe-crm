@@ -9,6 +9,7 @@
     <div class="user-details">
         <h2>{{ user.firstName }} {{ user.lastName }}</h2> <br>
         <p>{{ user.email }}</p>
+        <p>{{ user.birthDate | date:'dd/MM/yyyy' }}</p>
     </div>
 </mat-card>
 

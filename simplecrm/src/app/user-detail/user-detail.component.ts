@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +14,7 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
   selector: 'app-user-detail',
   standalone: true,
   imports: [
+    CommonModule,
     MatCardModule,
     MatIconModule,
     MatButtonModule,
@@ -41,6 +43,7 @@ export class UserDetailComponent {
     getDoc(userDocRef).then((docSnap) => {
       if (docSnap.exists()) {
         this.user = new User(docSnap.data());
+        this.user.birthDate = new Date(this.user.birthDate)
       }
     })
   }
