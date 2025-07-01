@@ -52,8 +52,12 @@ export class UserDetailComponent {
   }
 
   editUserDetail(): void {
+    const userCopy = structuredClone(this.user);
     const dialogRef = this.dialog.open(DialogEditUserComponent, {
-      data: this.user
+      data: {
+        user: userCopy,
+        id: this.userId
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

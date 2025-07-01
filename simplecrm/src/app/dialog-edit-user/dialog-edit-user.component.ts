@@ -16,6 +16,8 @@ import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material
 import { User } from '../../models/user.class';
 import { Firestore, collection, doc, addDoc } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ActivatedRoute } from '@angular/router';
+import { log } from 'console';
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -42,13 +44,17 @@ export class DialogEditUserComponent {
   readonly dialogRef = inject(MatDialogRef<DialogEditUserComponent>);
   isLoading = false;
   user: User;
+  userId: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { user: User, id: string }) {
     // Jetzt hast du Zugriff auf die übergebene User-Instanz in this.data
-    console.log('Empfangener User:', this.data);
-    this.user = data;
-  }
+    
+    this.user = data.user;
+    this.userId = data.id;
 
+    console.log('Empfangener User:', this.user);
+    console.log('Aktuelle ID:', this.userId);
+  }
 
   getSingleUserRef(id: string) {
     return doc(collection(this.firestore, 'users'), id);
