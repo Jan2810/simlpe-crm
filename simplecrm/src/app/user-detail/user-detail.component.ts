@@ -32,7 +32,6 @@ export class UserDetailComponent {
 
   ngOnInit() {
     this.userId = this.route.snapshot.params['id'];
-    console.log('aktuelle ID =', this.userId);
     this.getUser();
   }
 
@@ -42,13 +41,8 @@ export class UserDetailComponent {
     getDoc(userDocRef).then((docSnap) => {
       if (docSnap.exists()) {
         this.user = new User(docSnap.data());
-        console.log('User gefunden:', this.user);
-      } else {
-        console.log('Kein User mit dieser ID gefunden.');
       }
-    }).catch((error) => {
-      console.error('Fehler beim Abrufen des Users:', error);
-    });
+    })
   }
 
   editUserDetail(): void {
@@ -61,8 +55,9 @@ export class UserDetailComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log('Updated user:', result);
+      if (result) {
+        this.user = result;
+      }
     });
   }
 

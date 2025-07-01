@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialogActions,
-  MatDialogClose,
   MatDialogRef,
   MatDialogTitle,
   MAT_DIALOG_DATA
@@ -14,10 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../../models/user.class';
-import { Firestore, collection, doc, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, doc, updateDoc } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { ActivatedRoute } from '@angular/router';
-import { log } from 'console';
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -30,7 +27,6 @@ import { log } from 'console';
     MatButtonModule,
     MatDialogTitle,
     MatDialogActions,
-    MatDialogClose,
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,
@@ -45,15 +41,14 @@ export class DialogEditUserComponent {
   isLoading = false;
   user: User;
   userId: string;
+  docRef;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { user: User, id: string }) {
-    // Jetzt hast du Zugriff auf die übergebene User-Instanz in this.data
-    
+
     this.user = data.user;
     this.userId = data.id;
-
-    console.log('Empfangener User:', this.user);
-    console.log('Aktuelle ID:', this.userId);
+    this.user.id = data.id
+    this.docRef = doc(this.usersCol, data.id);
   }
 
   getSingleUserRef(id: string) {
@@ -61,7 +56,14 @@ export class DialogEditUserComponent {
   }
 
   saveUser() {
-    
+    this.isLoading = true;
+
+    updateDoc(this.docRef, {
+      ...this.user
+    }).then(() => {
+      this.isLoading = false
+      this.dialogRef.close(this.user);
+    })
   }
 
   closeDialog(): void {

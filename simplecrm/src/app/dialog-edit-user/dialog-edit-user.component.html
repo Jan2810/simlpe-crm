@@ -49,8 +49,7 @@
 
     <mat-dialog-actions>
         <button [disabled]="isLoading" mat-button (click)="closeDialog()">Cancel</button>
-        <button [disabled]="isLoading" mat-button (click)="saveUser()" [mat-dialog-close]=""
-            cdkFocusInitial>Save</button>
+        <button [disabled]="isLoading" mat-button (click)="saveUser()" cdkFocusInitial>Save</button>
     </mat-dialog-actions>
 
     <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>

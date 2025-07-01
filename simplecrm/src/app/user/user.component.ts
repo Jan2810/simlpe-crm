@@ -41,7 +41,6 @@ export class UserComponent implements OnInit {
     const usersCol = collection(this.firestore, 'users');
     this.users$ = collectionData(usersCol, { idField: 'id' }) as Observable<User[]>;
     this.sub = this.users$.subscribe(users => {
-      console.log('Users-Observable hat neue Daten:', users);
     });
   }
 
